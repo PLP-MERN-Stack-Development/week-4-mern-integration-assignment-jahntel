@@ -1,79 +1,173 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19897150&assignment_repo_type=AssignmentRepo)
-# MERN Stack Integration Assignment
+MERN Stack Blog Application
 
-This assignment focuses on building a full-stack MERN (MongoDB, Express.js, React.js, Node.js) application that demonstrates seamless integration between front-end and back-end components.
+![Blog Application Screenshot](screenshots/app-screenshot.png)
 
-## Assignment Overview
+A full-featured blog application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring user authentication, post management, categories, comments, and image uploads.
 
-You will build a blog application with the following features:
-1. RESTful API with Express.js and MongoDB
-2. React front-end with component architecture
-3. Full CRUD functionality for blog posts
-4. User authentication and authorization
-5. Advanced features like image uploads and comments
+## Features
+
+- **User Authentication**
+  - Registration and login system
+  - JWT token-based authentication
+  - Protected routes
+  - User profiles
+
+- **Blog Post Management**
+  - Create, read, update, and delete posts
+  - Rich text content
+  - Featured images with Cloudinary integration
+  - Post categories
+
+- **Interactive Features**
+  - Comment system
+  - Post liking functionality
+  - Search and filtering
+  - Pagination
+
+- **Admin Features**
+  - User management
+  - Category management
+  - Content moderation
+
+## Technologies Used
+
+### Frontend
+- React.js
+- React Router
+- Context API (State Management)
+- React Bootstrap (UI Components)
+- Axios (HTTP Client)
+- React Hook Form (Form Handling)
+- Cloudinary (Image Upload)
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (Database)
+- Mongoose (ODM)
+- JWT (Authentication)
+- Bcrypt (Password Hashing)
+- Multer (File Upload)
+- Cloudinary SDK (Image Storage)
+
+## Installation
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB (local or Atlas connection string)
+- Cloudinary account (for image uploads)
+- Git
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/mern-blog-app.git
+   cd mern-blog-app
+   ```
+
+2. **Set up the server**
+   ```bash
+   cd server
+   npm install
+   cp .env.example .env
+   ```
+   Edit the `.env` file with your configuration:
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
+   ```
+
+3. **Set up the client**
+   ```bash
+   cd ../client
+   npm install
+   cp .env.example .env
+   ```
+   Edit the `.env` file:
+   ```
+   VITE_API_BASE_URL=http://localhost:5000
+   ```
+
+4. **Run the application**
+   - In one terminal:
+     ```bash
+     cd server
+     npm run dev
+     ```
+   - In another terminal:
+     ```bash
+     cd ../client
+     npm run dev
+     ```
+
+5. **Access the application**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:5000
+
+## API Documentation
+
+The backend API follows RESTful conventions. Here are the main endpoints:
+
+### Authentication
+- `POST /api/auth/register` - Register a new user
+- `POST /api/auth/login` - Login existing user
+- `GET /api/auth/me` - Get current user profile
+
+### Posts
+- `GET /api/posts` - Get all posts (paginated)
+- `POST /api/posts` - Create a new post
+- `GET /api/posts/:id` - Get single post
+- `PUT /api/posts/:id` - Update a post
+- `DELETE /api/posts/:id` - Delete a post
+- `POST /api/posts/:id/like` - Like/unlike a post
+- `POST /api/posts/:id/comments` - Add a comment
+
+### Categories
+- `GET /api/categories` - Get all categories
+- `POST /api/categories` - Create new category (admin only)
 
 ## Project Structure
 
 ```
-mern-blog/
-├── client/                 # React front-end
-│   ├── public/             # Static files
-│   ├── src/                # React source code
-│   │   ├── components/     # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── services/       # API services
-│   │   ├── context/        # React context providers
-│   │   └── App.jsx         # Main application component
-│   └── package.json        # Client dependencies
-├── server/                 # Express.js back-end
-│   ├── config/             # Configuration files
-│   ├── controllers/        # Route controllers
-│   ├── models/             # Mongoose models
-│   ├── routes/             # API routes
-│   ├── middleware/         # Custom middleware
-│   ├── utils/              # Utility functions
-│   ├── server.js           # Main server file
-│   └── package.json        # Server dependencies
-└── README.md               # Project documentation
+mern-blog-app/
+├── client/               # Frontend React application
+│   ├── public/           # Static assets
+│   ├── src/              # React source code
+│   │   ├── api/          # API service modules
+│   │   ├── assets/       # Images, styles, etc.
+│   │   ├── components/   # Reusable components
+│   │   ├── context/      # React context providers
+│   │   ├── hooks/        # Custom hooks
+│   │   ├── pages/        # Page components
+│   │   ├── utils/        # Utility functions
+│   │   ├── App.jsx       # Main app component
+│   │   └── main.jsx      # App entry point
+│   └── .env             # Frontend environment variables
+│
+├── server/              # Backend Node.js application
+│   ├── config/          # Configuration files
+│   ├── controllers/     # Route controllers
+│   ├── middleware/      # Express middleware
+│   ├── models/          # Mongoose models
+│   ├── routes/          # API routes
+│   ├── utils/           # Utility functions
+│   ├── app.js           # Express app setup
+│   └── server.js        # Server entry point
+│
+├── screenshots/         # Application screenshots
+└── README.md            # This file
 ```
 
-## Getting Started
+## Contributing
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week4-Assignment.md` file
-4. Complete the tasks outlined in the assignment
+Contributions are welcome! Please follow these steps:
 
-## Files Included
-
-- `Week4-Assignment.md`: Detailed assignment instructions
-- Starter code for both client and server:
-  - Basic project structure
-  - Configuration files
-  - Sample models and components
-
-## Requirements
-
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Git
-
-## Submission
-
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
-
-1. Complete both the client and server portions of the application
-2. Implement all required API endpoints
-3. Create the necessary React components and hooks
-4. Document your API and setup process in the README.md
-5. Include screenshots of your working application
-
-## Resources
-
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [Mongoose Documentation](https://mongoosejs.com/docs/) 
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
